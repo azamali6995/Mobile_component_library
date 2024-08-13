@@ -1,15 +1,21 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React,{useState} from 'react'
+import { ScrollView, StyleSheet, Text, Button, View } from 'react-native'
+import React,{useState, useEffect} from 'react'
+import { colors } from '../../theme/Colors';
+import { FONTS } from '../../theme/GlobalStyle';
 import ButtonComponent from '../../component/ButtonComponent'
 import InputText from '../../component/InputText';
 import TextComponent from '../../component/TextComponent';
-import { colors } from '../../theme/Colors';
-import { FONTS } from '../../theme/GlobalStyle';
 import PickerDate from '../../component/PickerDate';
 import PickerTime from '../../component/PickerTime';
 import CheckBox from '../../component/CheckBox';
 import RadioButton from '../../component/ReadioButton';
 import DropDown from '../../component/DropDown';
+import FloatingLabelTextInput from '../../component/FloatingLabelTextInput';
+import Slider from '@react-native-community/slider';
+import DynamicSlider from '../../component/DynamicSlider';
+import ModalComponent from '../../component/ModalComponent';
+import DynamicProgressBar from '../../component/DynamicProgressBar';
+
 
 const HomeScreen = () => {
 
@@ -22,12 +28,17 @@ const HomeScreen = () => {
   const [isAgree, setIsAgree] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [reportState, setReportState] = useState('');
-
+  const [email, setEmail] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [sliderValue, setSliderValue] = useState(0.5);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
 
   const handleSignIn = () => {
     // Add Logic here
   };
+
+  
 
   let ChooseBall = [
     { label: 'Football', value: 'football' },
@@ -35,19 +46,157 @@ const HomeScreen = () => {
     { label: 'Hockey', value: 'hockey' },
   ]
 
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+  
+
+
 
   return (
     <ScrollView contentContainerStyle ={styles.container}>
+      <TextComponent
+      text="Mobile Reuseable Component"
+      textStyle={StyleSheet.flatten([
+        FONTS.h20, 
+        {color: colors.buttonColor, marginBottom : 10},
+      ])}
+     />
+
+      {/* Text Component  */}
+   <View style={styles.TextContainer}>
+   <TextComponent
+      text="Text Component"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+     <TextComponent
+      text="ReuseableComponent"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16,
+        {color: colors.buttonColor},
+      ])}
+     />
+    <TextComponent
+        text="Reuseable component"
+        textStyle={StyleSheet.flatten([
+          FONTS.h28,
+          {color: colors.greenColor},
+        ])}
+      />
+   </View> 
+
+    {/* ProgressBar component */}
+    <View style={styles.progressjContainer}>
+    <TextComponent
+      text="Progress Bar for show progress"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+      <DynamicProgressBar
+        progress={0.2}
+        width={350}
+        color="green"
+        unfilledColor="#dcdcdc"
+        borderWidth={2}
+        borderRadius={10}
+        height={10}
+        animationType="timing"
+        style={styles.progressBarStyle}
+      />
+    </View>
 
 
 
+    {/* Modal component */}
+    <View style={styles.ModalContainer}>
+    <TextComponent
+      text="Modal Component"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />  
+      <View style={styles.buttonContainer}>
+        <ButtonComponent 
+          title="open Modal" 
+          onPress={toggleModal}
+          backgroundColor="gray" // Custom background color
+          fontSize={18} // Custom font size
+          fontWeight="700" // Custom font weight
+          textColor="#fff" // Custom text color
+          borderRadius={10} // Custom border radius
+          height={50} // Custom height
+          width="50%" // Custom width
+        />
+    </View>
+    
+      <ModalComponent
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        modalStyle={styles.modalStyle}
+        contentStyle={styles.contentStyle}
+      >
+        <Text style={styles.modalText}>This is a dynamic modal!</Text>
+        <ButtonComponent 
+          title="Close Modal" 
+          onPress={toggleModal}
+          backgroundColor="gray" // Custom background color
+          fontSize={18} // Custom font size
+          fontWeight="700" // Custom font weight
+          textColor="#fff" // Custom text color
+          borderRadius={10} // Custom border radius
+          height={50} // Custom height
+          width="50%" // Custom width
+        /> 
+
+      </ModalComponent>
+    </View>
+
+
+
+
+    {/* slider component */}
+    <View style={styles.SliderContainer}>
+    <TextComponent
+      text="Progress Bar for show progress"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+      <Text>Value: {sliderValue}</Text>
+      <DynamicSlider
+        style={styles.sliderStyle}
+        minimumValue={0}
+        maximumValue={100}
+        value={sliderValue}
+        onValueChange={setSliderValue}
+        minimumTrackTintColor="#FF0000"
+        maximumTrackTintColor="#0000FF"
+        thumbTintColor="#00FF00"
+        step={1}
+      />
+    </View>
+
+
+    
 
    
 
-
-
     {/* Radio Button */}
     <View style={styles.RadioButtonContainer}>
+    <TextComponent
+      text="Radio Button"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
       <RadioButton
         isLeft={false}
         text="On Site User"
@@ -65,6 +214,14 @@ const HomeScreen = () => {
 
     {/* CheckBox component */}
     <View style={styles.checkboxContainer}>
+    <TextComponent
+      text="CheckBox"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+
       <CheckBox
         isAgree={isAgree}
         onClick={() => {
@@ -84,6 +241,13 @@ const HomeScreen = () => {
 
     {/* Time Picker */}
     <View style={styles.TimeContainer}>
+    <TextComponent
+      text="Time Picker"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
       <PickerTime
         reportTime={reportTime}
         selectedTime={selectedTime}
@@ -111,6 +275,13 @@ const HomeScreen = () => {
 
     {/* Date picker */}
     <View style={styles.DateContainer}>
+    <TextComponent
+      text="Date picker"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
       <PickerDate
         selectedDate={isEmpty}
         isEditable={true}
@@ -135,29 +306,58 @@ const HomeScreen = () => {
       
 
 
-    {/* Text Component  */}
-   <View style={styles.TextContainer}>
-     <TextComponent
-      text="ReuseableComponent"
+
+  {/* Floting Input for Email */}
+  <View style={styles.floatingContainer}>
+  <TextComponent
+      text="Floating Input for Email"
       textStyle={StyleSheet.flatten([
-        FONTS.h16,
-        {color: colors.buttonColor},
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
       ])}
      />
-
-    <TextComponent
-        text="Reuseable component"
-        textStyle={StyleSheet.flatten([
-          FONTS.h28,
-          {color: colors.greenColor},
-        ])}
+      <FloatingLabelTextInput
+        label="Enter Email"
+        value={email}
+        onChangeText={setEmail}
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.input}
+        labelStyle={styles.label}
       />
-   </View> 
-   
+  </View> 
+
+
+    {/* Floting Input for Password */}
+    <View style={styles.floatingContainer}>
+    <TextComponent
+      text="Floating Input for Passwod"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+      <FloatingLabelTextInput
+        label="Enter Password"
+        value={inputValue}
+        onChangeText={setInputValue}
+        isPassword
+        containerStyle={styles.inputContainer}
+        inputStyle={styles.input}
+        labelStyle={styles.label}
+      />
+    </View> 
+
 
 
     {/* TextInput Component with Email & userName */}
     <View style={styles.inputContainer}>
+    <TextComponent
+      text="Input for email"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
       <InputText
         val={userName}
         edit={true}
@@ -178,9 +378,15 @@ const HomeScreen = () => {
     </View>
 
 
-
     {/* TextInput Component with password */}
     <View style={styles.inputContainer}>
+    <TextComponent
+      text="Input for password"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
     <InputText
         val={password}
         edit={true}
@@ -203,6 +409,23 @@ const HomeScreen = () => {
       />
     </View>
 
+    
+    {/* DropDown */}
+    <View style={styles.dropDownContainer}>
+    <TextComponent
+      text="DropDown"
+      textStyle={StyleSheet.flatten([
+        FONTS.h16, 
+        {color: colors.black, marginBottom : 10},
+      ])}
+     />
+      <DropDown
+        value={reportState}
+        data={ChooseBall}
+        onHandleSelected={(value) => setReportState(value)}
+      />
+    </View>    
+
 
 
     {/* Button component */}
@@ -221,14 +444,6 @@ const HomeScreen = () => {
     </View>
 
 
-    {/* DropDown */}
-    <View style={styles.dropDownContainer}>
-      <DropDown
-        value={reportState}
-        data={ChooseBall}
-        onHandleSelected={(value) => setReportState(value)}
-      />
-    </View>
 
 
     </ScrollView>
@@ -239,44 +454,82 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
+    flexGrow:1,
+    paddingVertical:30,
+    paddingHorizontal:10,
     alignItems:"center",
     justifyContent:"center"
   },
   buttonContainer:{
-      paddingHorizontal:20,
       width:'100%',
-  },
-  inputContainer:{
-    width:"100%",
-    paddingHorizontal:20,
+      paddingVertical:10
   },
   TextContainer:{
+    width:"100%",
    paddingVertical:10   
   },
   DateContainer:{
     width:"100%",
-    paddingHorizontal:20,
   },
   TimeContainer:{
     width:"100%",
-    paddingHorizontal:20,
   },
   checkboxContainer:{
     width:"100%",
-    paddingHorizontal:20,
   },
   RadioButtonContainer:{
     width:"100%",
-    paddingHorizontal:20,
   },
   dropDownContainer:{
     width:"100%",
-    paddingHorizontal:20,
     justifyContent: 'center',
     paddingVertical:10
-  }
-
-    
+  },
+  screenContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+     
+  SliderContainer:{
+   width:"100%",  
+  },
+  ModalContainer :{
+   width:"100%",  
+  },
+  modalText:{
+    paddingVertical:10
+  },
+  progressjContainer:{
+    width:"100%",
+  },
+  Carouselcontainer:{
+    width:"100%",
+  },
+  carouselContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  carouselText: {
+    textAlign: 'center',
+    fontSize: 30,
+  },
+  CarouselViewcontainer:{
+    width:"100%",
+  },
+  floatingContainer:{
+    width:"100%",
+    paddingVertical:10
+  },
+  inputContainer:{
+    width:"100%",
+  },
+  input: {
+    fontSize: 18,
+    width:"100%",
+  },
+  label: {
+    color: 'grey',
+  }, 
 
 })
