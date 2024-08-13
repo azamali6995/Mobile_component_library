@@ -1,79 +1,178 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+The HomeScreen component is a React Native screen that demonstrates the usage of various reusable components. The components are imported from a shared component library, which enhances the modularity, reusability, and maintainability of the codebase. This screen includes text inputs, buttons, pickers, sliders, modals, checkboxes, radio buttons, progress bars, dropdowns, and floating label inputs, all customized to meet specific design requirements.
 
-# Getting Started
+Table of Contents
+Installation
+Components
+Props
+Usage
+Customization
+Contributing
+License
+Installation
+To use this component in your project, you need to have a React Native environment set up. Clone the repository and install the necessary dependencies:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+bash
+Copy code
+git clone <repository-url>
+cd <repository-folder>
+npm install
+Ensure you have the necessary dependencies installed in your project:
 
-## Step 1: Start the Metro Server
+bash
+Copy code
+npm install react-native react-native-mobile-component-library
+Components
+The following reusable components are used in the HomeScreen:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
 
-```bash
-# using npm
-npm start
+ButtonComponent: A customizable button component.
+   InputText: A text input field with customizable properties.
+   TextComponent: A simple text component with flexible styling.
+   PickerDate: A date picker component for selecting dates.
+   PickerTime: A time picker component for selecting times.
+   CheckBox: A checkbox component for selections.
+   RadioButton: A radio button component for single selections.
+   DropDown: A dropdown component for selecting items from a list.
+   FloatingLabelTextInput: A text input with a floating label.
+   DynamicSlider: A slider component for selecting numeric values.
+   ModalComponent: A modal component for displaying pop-up content.
+   DynamicProgressBar: A progress bar component for showing progress.
+   Props
 
-# OR using Yarn
-yarn start
-```
+Each component accepts various props for customization. The following props are demonstrated in the HomeScreen component:
 
-## Step 2: Start your Application
+ButtonComponent
+title: The text to display on the button.
+onPress: The function to call when the button is pressed.
+backgroundColor: Background color of the button.
+fontSize: Font size of the button text.
+fontWeight: Font weight of the button text.
+textColor: Color of the button text.
+borderRadius: Border radius of the button.
+height: Height of the button.
+width: Width of the button.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+InputText
+val: The value of the input field.
+edit: Boolean to control editability.
+returnKeyType: Type of return key on the keyboard.
+keyboardType: Type of keyboard to display.
+bgStyle: Style for the background of the input.
+placeholder: Placeholder text for the input.
+placeholderTextColor: Color of the placeholder text.
+fontSize: Font size of the input text.
+fontFamily: Font family of the input text.
+textColor: Color of the input text.
+onChangeText: Function to call when text changes.
+blurOnSubmit: Boolean to control whether the input should lose focus on submit.
+RightIcon: Icon to display on the right side of the input.
+rightIconStyle: Style for the right icon.
 
-### For Android
+DynamicProgressBar
+progress: Current progress value (0 to 1).
+width: Width of the progress bar.
+color: Color of the filled portion of the progress bar.
+unfilledColor: Color of the unfilled portion of the progress bar.
+borderWidth: Border width of the progress bar.
+borderRadius: Border radius of the progress bar.
+height: Height of the progress bar.
+animationType: Type of animation (e.g., "timing").
+style: Additional styles for the progress bar.
 
-```bash
-# using npm
-npm run android
+ModalComponent
+isModalVisible: Boolean to control modal visibility.
+toggleModal: Function to toggle the modal's visibility.
+modalStyle: Style for the modal.
+contentStyle: Style for the modal content.
 
-# OR using Yarn
-yarn android
-```
+DynamicSlider
+style: Additional styles for the slider.
+minimumValue: Minimum value of the slider.
+maximumValue: Maximum value of the slider.
+value: Current value of the slider.
+onValueChange: Function to call when the slider value changes.
+minimumTrackTintColor: Color of the track to the left of the thumb.
+maximumTrackTintColor: Color of the track to the right of the thumb.
+thumbTintColor: Color of the thumb.
+step: Step value for the slider.
 
-### For iOS
 
-```bash
-# using npm
-npm run ios
+PickerDate
+selectedDate: The currently selected date.
+isEditable: A boolean that determines if the date picker is editable.
+reportDate: The date to be reported or displayed.
+placeholderText: Placeholder text shown in the date picker.
+placeholderColor: The color of the placeholder text.
+textColor: Color of the selected date text.
+fontSize: Font size for the selected date text.
+textStyle: Additional text style for the selected date text.
+containerStyle: Custom style for the date picker container.
+textContainerStyle: Style for the text container within the date picker.
+iconContainerStyle: Style for the icon container within the date picker.
+iconSource: The source of the icon to display in the date picker.
+iconStyle: Additional styles for the icon.
+datePickerStyle: Custom style for the date picker itself.
+onDateSelect: Function to call when a date is selected.
 
-# OR using Yarn
-yarn ios
-```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+PickerTime
+reportTime: The time to be reported or displayed.
+selectedTime: The currently selected time.
+isEditable: A boolean that determines if the time picker is editable.
+mode: Mode of the time picker, e.g., 'time'.
+onTimeSelect: Function to call when a time is selected.
+borderColor: Color of the border of the time picker.
+placeholderText: Placeholder text shown in the time picker.
+placeholderColor: Color of the placeholder text.
+textColor: Color of the selected time text.
+fontSize: Font size for the selected time text.
+icon: The source of the icon to display in the time picker.
+iconStyle: Additional styles for the icon.
+containerStyle: Custom style for the time picker container.
+textContainerStyle: Style for the text container within the time picker.
+iconContainerStyle: Style for the icon container within the time picker.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+CheckBox
+isAgree: Boolean indicating whether the checkbox is checked or not.
+onClick: Function to call when the checkbox is clicked.
+text: Text to display next to the checkbox.
+iconSize: Size of the checkbox icon.
+iconColorChecked: Color of the checkbox icon when checked.
+iconColorUnchecked: Color of the checkbox icon when unchecked.
+containerStyle: Custom style for the checkbox container.
+textStyle: Custom text style for the checkbox label.
 
-Now that you have successfully run the app, let's modify it.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+RadioButton
+isLeft: Boolean indicating the position of the radio button, left or right of the label.
+text: Text to display next to the radio button.
+selected: Boolean indicating whether the radio button is selected or not.
+onClick: Function to call when the radio button is clicked.
+buttonSize: Size of the radio button.
+selectedColor: Color of the radio button when selected.
+unselectedColor: Color of the radio button when not selected.
+textStyle: Custom text style for the radio button label.
+containerStyle: Custom style for the radio button container.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
+DropDown
+value: The currently selected value from the dropdown.
+data: Array of items to display in the dropdown, each item should have a label and value.
+onHandleSelected: Function to call when a value is selected from the dropdown.
+placeholder: Placeholder text shown in the dropdown.
+dropdownStyle: Custom style for the dropdown container.
+itemStyle: Custom style for each item in the dropdown.
+labelStyle: Custom text style for the label of each item in the dropdown.
+iconStyle: Additional styles for the dropdown icon.
+Additional Components
+Other components like PickerDate, PickerTime, CheckBox, RadioButton, DropDown, and FloatingLabelTextInput have their respective props, providing extensive customization options.
 
-You've successfully run and modified your React Native App. :partying_face:
+Usage
+To use the HomeScreen component in your application, simply import it into your desired screen or component:
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+javascript
+Copy code
+Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvement, feel free to open an issue or create a pull request.

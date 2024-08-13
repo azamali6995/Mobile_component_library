@@ -11,7 +11,6 @@ import CheckBox from '../../component/CheckBox';
 import RadioButton from '../../component/ReadioButton';
 import DropDown from '../../component/DropDown';
 import FloatingLabelTextInput from '../../component/FloatingLabelTextInput';
-import Slider from '@react-native-community/slider';
 import DynamicSlider from '../../component/DynamicSlider';
 import ModalComponent from '../../component/ModalComponent';
 import DynamicProgressBar from '../../component/DynamicProgressBar';
