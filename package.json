@@ -1,7 +1,12 @@
 {
-  "name": "mobile_component_library",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@cinqdev/mobile_component_library",
+  "version": "0.0.2",
+  "private": false,
+  "description": "A React Native component library",
+  "keywords": ["react-native", "components", "library"],
+  "author": "cinqdev.com",
+  "license": "MIT",
+  "main": "index.js",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
